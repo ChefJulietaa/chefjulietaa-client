@@ -21,3 +21,24 @@ img{
   gap:20px;
   margin-top:50px;
 }
+
+div{
+  width:1000px;
+  margin:auto
+}
+header{
+  height:50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(174, 216, 46);
+  color:white
+}
+.link {
+  color:rgb(255, 255, 255);
+  background-color: rgb(172, 107, 167);
+  font-size: 1.5vw;
+  border-radius: 5%;
+  border: 1px silver solid;
+  padding: 0.1vw 1vw;
+}

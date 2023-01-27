@@ -57,8 +57,8 @@ export default function Recipes() {
             </ul>
             <img src={recipe.imageUrl} alt={recipe.title} />
             </Link>
-            <Link to={`/recipes/edit/${recipe._id}`}>Edit Recipe</Link>
-            <Link to={`/recipes/add/${recipe._id}`}>Create recipe</Link>
+            <Link className="link" to={`/recipes/edit/${recipe._id}`}>Edit Recipe</Link>
+            <Link className="link" to={`/recipes/add/${recipe._id}`}>Create recipe</Link>
           </div>
         ))}
       </div>
