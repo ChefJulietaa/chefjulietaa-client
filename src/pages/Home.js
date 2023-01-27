@@ -43,15 +43,14 @@ export default function Recipes() {
           <div className="card" key={recipe._id}>
           <Link to={`/recipes/${recipe._id}`}>
             <h3>{recipe.title}</h3>
-            <h3>{recipe.description}</h3>
-            <h3>{recipe.title}</h3>
-            <h3>{recipe.author}</h3>
-            <h3>{recipe.totalTime}</h3>
-            <h3>{recipe.servings}</h3>
-            <ul>
+            <h3>Description: {recipe.description}</h3>
+            <h3>Author: {recipe.author}</h3>
+            <h3>Total Time: {recipe.totalTime} mins</h3>
+            <h3>Servings: {recipe.servings} servings</h3>
+            <ul>Ingredients: 
               {recipe.ingredients.map((item) => (
                 <li key={item._id}>
-                  {item.ingredient.title}: {item.amount}
+                {item.amount} {item.ingredient.title}
                 </li>
               ))}
             </ul>
