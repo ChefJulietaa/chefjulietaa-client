@@ -18,10 +18,13 @@ function Navbar() {
       </Link>
  {isLoggedIn && (
         <>
-      <Link to="/recipes">
+      {/* <Link to="/recipes">
         <button>Recipes</button>
-      </Link>
+      </Link> */}
 
+      <Link to={`/recipes/add`}>
+        <button>Create recipe</button>
+      </Link>
 
       <button onClick={logOutUser}>Logout</button>
           <span>{user && user.name}</span>
@@ -30,9 +33,9 @@ function Navbar() {
  
       {!isLoggedIn && (
         <>
-          <Link to="/signup"> <button>Sign Up</button> </Link>
-          <Link to="/login"> <button>Login</button> </Link>
-        </>)};
+          <Link to="/signup"><button>Sign Up</button></Link>
+          <Link to="/login"><button>Login</button> </Link>
+        </>)}
     </nav>
   );
 }
