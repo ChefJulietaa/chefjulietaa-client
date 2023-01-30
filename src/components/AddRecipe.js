@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 
 function AddRecipe(props) {
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -13,15 +14,17 @@ function AddRecipe(props) {
   const [ingredients, setIngredients] = useState("");
 
 // Form submission
-  const handleFormSubmit = (e) => {                        
+  const handleFormSubmit = (e) => {              
     e.preventDefault();
 
-    const requestBody = { title, description, imageUrl, author, totalTime, servings, ingredients };
- 
+  // Get the token from the localStorage
+  const storedToken = localStorage.getItem("authToken");
 
+    const requestBody = { title, description, imageUrl, author, totalTime, servings, ingredients };
     // refreshing the list of recipes once a new recipe is created
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/recipes`, requestBody)
+      .post(`${process.env.REACT_APP_API_URL}/api/recipes`, requestBody, 
+      { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         // Reset the state
         setTitle("");
@@ -101,8 +104,9 @@ function AddRecipe(props) {
           value={ingredients}
           onChange={(e) => setIngredients(e.target.value)}
         />
+        <button>Create Recipe</button>
       </form>
-      <button onClick={AddRecipe}>Create Recipe</button>
+      
       </div>
     </div>
   );
