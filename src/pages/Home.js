@@ -29,7 +29,6 @@ export default function Recipes() {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/recipes`)
       .then((response) => {
-        console.log(response.data);
         setRecipes(response.data);
       })
       .catch((error) => console.log(error));
@@ -48,7 +47,7 @@ export default function Recipes() {
           <div className="card" key={recipe._id}>
           
             <h3>{recipe.title}</h3>
-            <h3>Description: {recipe.description}</h3>
+            {/* <h3>Description: {recipe.description}</h3>
             <h3>Author: {recipe.author.name}</h3>
             <h3>Total Time: {recipe.totalTime} mins</h3>
             <h3>Servings: {recipe.servings} servings</h3>
@@ -58,11 +57,11 @@ export default function Recipes() {
                 {item.amount} {item.ingredient.title}
                 </li>
               ))}
-            </ul>
+            </ul> */}
             <img src={recipe.imageUrl} alt={recipe.title} />
-            <Link to={`/recipes/${recipe._id}`}>
-              View Recipe
-            </Link>
+            <Link className="link" to={`/recipes/${recipe._id}`}>View Recipe</Link>
+          
+      
             {/* condional renderring like in Navbar */}
             {isLoggedIn && recipe.author._id === user._id && (
               <>
