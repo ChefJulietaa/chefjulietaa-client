@@ -43,7 +43,7 @@ export default function Recipes() {
       <Header />
       <div>Recipes</div>
       <div className="container"> 
-        {recipes.map((recipe) => (
+        {recipes.length !== 0 && recipes.map((recipe) => (
           <div className="card" key={recipe._id}>
           
             <h3>{recipe.title}</h3>
