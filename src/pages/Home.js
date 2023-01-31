@@ -50,7 +50,7 @@ export default function Recipes() {
           
       
              {/* condional renderring like in Navbar*/}
-            {isLoggedIn && recipe.author._id === user._id && ( 
+            {isLoggedIn && recipe.author && recipe.author._id === user._id && ( 
               <>
                 <Link className="link" to={`/recipes/edit/${recipe._id}`}>Edit Recipe</Link>
               </>)}
