@@ -54,7 +54,6 @@ export default function Recipes() {
               <>
                 <Link className="link" to={`/recipes/edit/${recipe._id}`}>Edit Recipe</Link>
               </>
-            )}
           </div>
         ))} 
       </div>
