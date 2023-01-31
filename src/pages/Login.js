@@ -43,32 +43,34 @@ function Login(props) {
  
   
   return (
-    <div className="Login">
-      <h1>Login</h1>
+    <div id="login-form" class="form-container">
+      <h1 className="heading">Login</h1>
 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input 
+      <form onSubmit={handleLoginSubmit} className= "form">
+      <div>
+        <label className="label"> Email:</label>
+        <input className="input"
           type="email"
           name="email"
           value={email}
-          onChange={handleEmail}/>
-
-        <label>Password:</label>
-        <input
+          onChange={handleEmail}/></div>
+        <div>
+        <label className="label"> Password:</label>
+        <input className="input"
           type="password"
           name="password"
           value={password}
-          onChange={handlePassword} />
+          onChange={handlePassword} /></div>
 
-        <button type="submit">Login</button>
+        <button className="button" type="submit">Login</button>
       </form>
       { errorMessage && <p className="error-message">{errorMessage}</p> }
 
-      <p>Don't have an account yet?</p>
+      <p className="text">Don't have an account yet?</p>
       <Link to={"/signup"}> Sign Up</Link>
     </div>
   )
 }
 
 export default Login;
+

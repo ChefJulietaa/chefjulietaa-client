@@ -1,7 +1,19 @@
-.card {
+/* .card {
   border: 1px solid rgb(32, 27, 27);
   padding: 10px;
   width: 300px;
+} */
+
+.card {
+  background-color: white;
+  box-shadow: 0 2px 2px 2px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  width: 100%;
+  max-width: 320px;
 }
 .container{
   color:rgb(141, 211, 21);
@@ -11,15 +23,6 @@
 }
 img{
   width:100%;
-}
-.form{
-  color:rgb(217, 19, 157);
-  display:flex;
-  flex-direction:column;
-  width:500px;
-  margin:auto;
-  gap:20px;
-  margin-top:50px;
 }
 
 div{
@@ -36,9 +39,59 @@ header{
 }
 .link {
   color:rgb(255, 255, 255);
-  background-color: rgb(172, 107, 167);
+  background-color: rgb(23, 21, 23);
   font-size: 1.5vw;
   border-radius: 5%;
   border: 1px silver solid;
   padding: 0.1vw 1vw;
 }
+
+.form-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  width: 100%;
+  max-width: 320px;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.label {
+  width: 100%;
+}
+.input {
+  border: 1px solid rgb(16, 15, 15);
+  border-radius: 4px;
+  padding: 12px 8px;
+  width: 50%;
+}
+
+.button {
+  background-color: rgb(67, 184, 242);
+  color: white;
+  padding: 12px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.5;
+}
+
+.text {
+  color: black;
+}
+/* .button-group {
+  padding-top: 16px;
+  display: flex;
+  column-gap: 16px;
+}  */
