@@ -136,7 +136,7 @@ function AddEditRecipe(props) {
           type="text"
           placeholder='title'
           name="title"
-          value={title}
+          value={title || ""}
           onChange={(e) => setTitle(e.target.value)}
         />
         </div>
@@ -145,7 +145,7 @@ function AddEditRecipe(props) {
         <textarea
           name="description"
           placeholder='description'
-          value={description}
+          value={description || ""}
           onChange={(e) => setDescription(e.target.value)}
         />
         </div>
@@ -154,7 +154,7 @@ function AddEditRecipe(props) {
         <textarea
           name="imageUrl"
           placeholder="image url here..."
-          value={imageUrl}
+          value={imageUrl || ""}
           onChange={(e) => setImageUrl(e.target.value)}
         />
         </div>
@@ -164,7 +164,7 @@ function AddEditRecipe(props) {
           type="text"
           placeholder="total time"
           name="totalTime"
-          value={totalTime}
+          value={totalTime || ""}
           onChange={(e) => setTotalTime(e.target.value)}
         /></div>
         <div>
@@ -173,7 +173,7 @@ function AddEditRecipe(props) {
           type="text"
           placeholder='servings'
           name="servings"
-          value={servings}
+          value={servings || ""}
           onChange={(e) => setServings(e.target.value)}
         /></div>
         <label>Ingredients:</label>
@@ -182,11 +182,11 @@ function AddEditRecipe(props) {
               <div key={ingredientIndex}>
                 <input 
                   type="text" 
-                  value={includedIngredient.amount} 
+                  value={includedIngredient.amount || ""} 
                   onChange={(event) => handleIngredientAmountChange(event, ingredientIndex)}
                 />
-                <select onChange={(event) => handleIngredientChange(event, ingredientIndex)}>
-                  <option selected> -- Choose an ingredient --</option>
+                <select value={includedIngredient.ingredient._id} onChange={(event) => handleIngredientChange(event, ingredientIndex)}>
+                  <option> -- Choose an ingredient --</option>
                   {allIngredients.map((ingredient) => (
                     <option value={ingredient._id} key={ingredient._id}>{ingredient.title}</option>
                   ))}
