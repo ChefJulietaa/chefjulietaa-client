@@ -49,8 +49,8 @@ export default function Recipes() {
             <Link className="link" to={`/recipes/${recipe._id}`}>View Recipe</Link>
           
       
-             condional renderring like in Navbar
-            {isLoggedIn && recipe.author._id === user._id && (
+             {/* condional renderring like in Navbar
+            {isLoggedIn && recipe.author._id === user._id && ( */}
               <>
                 <Link className="link" to={`/recipes/edit/${recipe._id}`}>Edit Recipe</Link>
               </>
