@@ -76,6 +76,8 @@ function AddEditRecipe(props) {
         .catch((error) => console.log(error));
     }
     else {
+      console.log(requestBody)
+      console.log(ingredients)
       axios
         .post(`${process.env.REACT_APP_API_URL}/api/recipes`, requestBody, 
         { headers: { Authorization: `Bearer ${storedToken}` } })
@@ -177,15 +179,16 @@ function AddEditRecipe(props) {
         <label>Ingredients:</label>
         <div>
             {ingredients.map((includedIngredient, ingredientIndex) => (
-              <div>
+              <div key={ingredientIndex}>
                 <input 
                   type="text" 
                   value={includedIngredient.amount} 
                   onChange={(event) => handleIngredientAmountChange(event, ingredientIndex)}
                 />
                 <select onChange={(event) => handleIngredientChange(event, ingredientIndex)}>
+                  <option selected> -- Choose an ingredient --</option>
                   {allIngredients.map((ingredient) => (
-                    <option value={ingredient._id} selected={includedIngredient.ingredient._id === ingredient._id}>{ingredient.title}</option>
+                    <option value={ingredient._id} key={ingredient._id}>{ingredient.title}</option>
                   ))}
                 </select>
                 <button type="button" onClick={() => removeIngredientById(ingredientIndex)}>Delete</button>
@@ -202,3 +205,5 @@ function AddEditRecipe(props) {
 }
 
 export default AddEditRecipe;
+
+// selected={includedIngredient.ingredient._id === ingredient._id}
