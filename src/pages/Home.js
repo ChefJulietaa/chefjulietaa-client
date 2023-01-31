@@ -43,11 +43,11 @@ export default function Recipes() {
       <Header />
       <div>Recipes</div>
       <div className="container"> 
-        {recipes.length !== 0 && recipes.map((recipe) => (
+        {/* {recipes.length !== 0 && recipes.map((recipe) => (
           <div className="card" key={recipe._id}>
           
             <h3>{recipe.title}</h3>
-            {/* <h3>Description: {recipe.description}</h3>
+             <h3>Description: {recipe.description}</h3>
             <h3>Author: {recipe.author.name}</h3>
             <h3>Total Time: {recipe.totalTime} mins</h3>
             <h3>Servings: {recipe.servings} servings</h3>
@@ -57,19 +57,19 @@ export default function Recipes() {
                 {item.amount} {item.ingredient.title}
                 </li>
               ))}
-            </ul> */}
+            </ul> 
             <img src={recipe.imageUrl} alt={recipe.title} />
             <Link className="link" to={`/recipes/${recipe._id}`}>View Recipe</Link>
           
       
-            {/* condional renderring like in Navbar */}
+             condional renderring like in Navbar
             {isLoggedIn && recipe.author._id === user._id && (
               <>
                 <Link className="link" to={`/recipes/edit/${recipe._id}`}>Edit Recipe</Link>
               </>
             )}
           </div>
-        ))}
+        ))} */}
       </div>
     </>
   );
