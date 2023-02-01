@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../components/AuthContext";
-
+import service from "../api/service";
 
 function AddEditRecipe(props) {
 
@@ -15,6 +15,26 @@ function AddEditRecipe(props) {
   const [servings, setServings] = useState("");
   const [ingredients, setIngredients] = useState([{ amount: '', ingredient: '' }]);
   const [allIngredients, setAllIngredients] = useState([]);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
+
+  const handleFileUpload = (e) => {
+
+    const uploadData = new FormData();
+    uploadData.append("imageUrl", e.target.files[0]);
+
+    setIsUploadingImage(true);  
+
+    service
+      .uploadImage(uploadData)
+      .then((response) => {
+        setImageUrl(response.fileUrl);
+      })
+      .catch((err) => console.log("Error while uploading the file: ", err))
+      .finally ( () => {
+        setIsUploadingImage(false); 
+      });
+  };
+
 
   const { user } = useContext(AuthContext);
 
@@ -33,22 +53,15 @@ function AddEditRecipe(props) {
       .catch((error) => console.log(error));
   };
 
-
-  const getAllIngredients = () => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/ingredients`)
-      .then((response) => {
-        setAllIngredients(response.data);
-      })
-      .catch((error) => console.log(error));
-  };
+  
 
   useEffect(() => {
-    getAllIngredients();
+    service.getAllIngredients(setAllIngredients);
     if (recipeId) {
       getRecipe();
     }
   }, [recipeId]);
+
 
 // Form submission
   const handleFormSubmit = (e) => {              
@@ -125,7 +138,6 @@ function AddEditRecipe(props) {
 
   return (
     <div className="AddRecipe">
-      <Link to={`/`}>Home</Link>
     <div className='form'>
       <h3>{ recipeId && 'Edit'}{ !recipeId && 'Create'} Recipe</h3>
 {/* requesting to create a new recipe */}
@@ -151,11 +163,10 @@ function AddEditRecipe(props) {
         </div>
         <div>
         <label>Image:</label>
-        <textarea
+        <input type="file" 
           name="imageUrl"
-          placeholder="image url here..."
-          value={imageUrl || ""}
-          onChange={(e) => setImageUrl(e.target.value)}
+        
+          onChange={handleFileUpload}
         />
         </div>
         <div>
@@ -196,9 +207,11 @@ function AddEditRecipe(props) {
             ))}
           <button type="button" onClick={addIngredient}>Add ingredient</button>
         </div>
-        <button>Save</button>
+        { isUploadingImage 
+      ? <button type="submit" disabled>Uploading...</button>
+      : <button type="submit" >Create</button>
+    }
       </form>
-      
       </div>
     </div>
   );
