@@ -1,43 +1,66 @@
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
-// import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "./AuthContext";
- 
-function Navbar() {
 
-  const {
-     isLoggedIn,
-     user,
-     logOutUser   
-    } = useContext(AuthContext);
-
+function NavScrollExample() {
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   return (
-    <nav>
-      <Link to="/">
-        <button>Home</button>
-      </Link>
- {isLoggedIn && (
-        <>
-      {/* <Link to="/recipes">
-        <button>Recipes</button>
-      </Link> */}
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand href="#">Recipes for everyone</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: "100px" }}
+            navbarScroll
+          >
+            <Nav.Link href="/">Home</Nav.Link>
+            {isLoggedIn ? (
+              <>
+                <Nav.Link href={`/recipes/add`}>Create recipe</Nav.Link>
+                <Nav.Link onClick={logOutUser}>Logout</Nav.Link>
+              </>
+            ) : (
+              <>
+                <Nav.Link href="/signup">Sign Up</Nav.Link>
+                <Nav.Link href="/login">Login</Nav.Link>
+              </>
+            )}
 
-      <Link to={`/recipes/add`}>
-        <button>Create recipe</button>
-      </Link>
-
-      <button onClick={logOutUser}>Logout</button>
-          <span>{user && user.name}</span>
-        </>
-      )}
- 
-      {!isLoggedIn && (
-        <>
-          <Link to="/signup"><button>Sign Up</button></Link>
-          <Link to="/login"><button>Login</button> </Link>
-        </>)}
-    </nav>
+            <NavDropdown title="Link" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action4">
+                Another action
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action5">
+                Something else here
+              </NavDropdown.Item>
+            </NavDropdown>
+            <Nav.Link href="#" disabled>
+              Link
+            </Nav.Link>
+          </Nav>
+          <Form className="d-flex">
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"
+            />
+            <Button variant="outline-success">Search</Button>
+          </Form>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
- 
-export default Navbar;
+
+export default NavScrollExample;

@@ -25,16 +25,15 @@ img{
   width:100%;
 }
 
-div{
+/* div{
   width:1000px;
   margin:auto
-}
+} */
 header{
   height:50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(174, 216, 46);
   color:white
 }
 .link {
