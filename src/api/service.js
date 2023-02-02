@@ -30,7 +30,7 @@ const getAllIngredients = (cb) => {
 };
 
 const uploadImage = (file) => {
-  return api.post("/upload", file)
+  return api.post(`${process.env.REACT_APP_API_URL}/api/recipes/upload`, file)
     .then(res => res.data)
     .catch(errorHandler);
 };
