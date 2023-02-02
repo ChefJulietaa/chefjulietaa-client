@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../components/AuthContext";
 import service from "../api/service";
+import Container from "react-bootstrap/Container";
 
 function AddEditRecipe(props) {
   const navigate = useNavigate();
@@ -37,6 +38,18 @@ function AddEditRecipe(props) {
   };
 
   const { user } = useContext(AuthContext);
+
+   
+  const deleteRecipe= () => { 
+    const storedToken = localStorage.getItem("authToken");          
+    axios
+      .delete(`${process.env.REACT_APP_API_URL}/api/recipes/${recipeId}`,
+      { headers: { Authorization: `Bearer ${storedToken}` } })
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
+  };  
 
   const getRecipe = () => {
     axios
@@ -133,6 +146,9 @@ function AddEditRecipe(props) {
   }
 
   return (
+    <Container>
+
+  
     <div className="AddRecipe">
     <div className='form'>
       <h3>{ recipeId && 'Edit'}{ !recipeId && 'Create'} Recipe</h3>
@@ -205,12 +221,14 @@ function AddEditRecipe(props) {
         </div>
         { isUploadingImage 
       ? <button type="submit" disabled>Uploading...</button>
-      : <button type="submit" >Create a recipe</button>
+      : <button type="submit" >{recipeId ? "Save" : "Create"} recipe</button>
     }
+    {recipeId && <button type="button" onClick={deleteRecipe}>Delete</button>}
       </form>
       </div>
     </div>
-  );
+    </Container>);
+  
 }
 
 export default AddEditRecipe;
