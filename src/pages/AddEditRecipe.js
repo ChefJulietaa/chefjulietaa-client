@@ -12,6 +12,7 @@ function AddEditRecipe(props) {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [method, setMethod] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [totalTime, setTotalTime] = useState("");
   const [servings, setServings] = useState("");
@@ -58,6 +59,7 @@ function AddEditRecipe(props) {
         const { title, description, imageUrl, totalTime, servings, ingredients } = response.data
         setTitle(title);
         setDescription(description);
+        setMethod(method);
         setImageUrl(imageUrl);
         setTotalTime(totalTime);
         setServings(servings);
@@ -80,7 +82,7 @@ function AddEditRecipe(props) {
     // Get the token from the localStorage
     const storedToken = localStorage.getItem("authToken");
 
-    const requestBody = { title, description, imageUrl, author: user._id, totalTime, servings, ingredients };
+    const requestBody = { title, description, method, imageUrl, author: user._id, totalTime, servings, ingredients };
     // refreshing the list of recipes once a new recipe is created
     if (recipeId) {
       axios
@@ -90,6 +92,7 @@ function AddEditRecipe(props) {
           // Reset the state
           setTitle("");
           setDescription("");
+          setMethod("");
           setImageUrl("");
           setTotalTime("");
           setServings("");
@@ -108,6 +111,7 @@ function AddEditRecipe(props) {
           // Reset the state
           setTitle("");
           setDescription("");
+          setMethod("");
           setImageUrl("");
           setTotalTime("");
           setServings("");
@@ -171,6 +175,15 @@ function AddEditRecipe(props) {
           placeholder='description'
           value={description || ""}
           onChange={(e) => setDescription(e.target.value)}
+        />
+        </div>
+        <div>
+        <label>Method:</label>
+        <textarea
+          name="method"
+          placeholder='method'
+          value={method || ""}
+          onChange={(e) => setMethod(e.target.value)}
         />
         </div>
         <div>
