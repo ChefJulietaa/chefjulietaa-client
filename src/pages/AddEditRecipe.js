@@ -218,6 +218,7 @@ function AddEditRecipe(props) {
               </div>
             ))}
           <button type="button" onClick={addIngredient}>Add another ingredient</button>
+          <button type="button" onClick={() => navigate('/ingredients/add')}>Create a new ingredient</button>
         </div>
         { isUploadingImage 
       ? <button type="submit" disabled>Uploading...</button>

@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import ViewRecipe from "./pages/ViewRecipe";
 import AddEditRecipe from "./pages/AddEditRecipe";
+import AddIngredient from "./pages/AddIngredient";
 import NavScrollExample from "./components/Nav";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
@@ -26,6 +27,18 @@ function App() {
           }
         />
         {/* edit recipe */}
+
+        {/* create an ingredient */}
+        <Route
+          path="/ingredients/add"
+          element={
+            <IsPrivate>
+              <AddIngredient />
+            </IsPrivate>
+          }
+        />
+        {/* edit recipe */}
+
         <Route
           path="/recipes/edit/:recipeId"
           element={
