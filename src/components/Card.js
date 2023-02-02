@@ -5,6 +5,7 @@ function KitchenSinkExample({
   recipe: {
     title,
     description,
+    method,
     totalTime,
     servings,
     ingredients,
@@ -20,7 +21,7 @@ function KitchenSinkExample({
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{description}</Card.Text>
-        <Card.Title>{title}</Card.Title>
+        <Card.Title>{method}</Card.Title>
       </Card.Body>
           {!preview && <ListGroup className="list-group-flush">
               <ListGroup.Item>Servings: {servings}</ListGroup.Item>
