@@ -21,9 +21,10 @@ function KitchenSinkExample({
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{description}</Card.Text>
-        <Card.Title>{method}</Card.Title>
+       
       </Card.Body>
           {!preview && <ListGroup className="list-group-flush">
+              <ListGroup.Item>Method: {method}</ListGroup.Item>
               <ListGroup.Item>Servings: {servings}</ListGroup.Item>
               <ListGroup.Item>Total Time: {totalTime} minutes</ListGroup.Item>
               {author && <ListGroup.Item>Author: {author.name}</ListGroup.Item>}
