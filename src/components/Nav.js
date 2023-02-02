@@ -21,7 +21,7 @@ function NavScrollExample() {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#">Recipes for everyone</Navbar.Brand>
+        <Navbar.Brand style={{ color:"green", fontSize:"30px", fontFamily:"ariel"}} href="#">Cook Book</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -33,13 +33,14 @@ function NavScrollExample() {
           </Nav>
           {isLoggedIn ? (
             <Nav>
-              <Nav.Link href={`/recipes/add`}>Create recipe</Nav.Link>
-              <Nav.Link onClick={logOutUser}>Logout</Nav.Link>
+              <Nav.Link style={{ color:"rgb(3, 100, 157)"}} href={`/recipes/add`}>Create a recipe</Nav.Link>
               <NavDropdown title="Ingredients" id="navbarScrollingDropdown">
                 {ingredients.map((ingredient) => (
                   <NavDropdown.Item>{ingredient.title}</NavDropdown.Item>
                 ))}
               </NavDropdown>
+              <Nav.Link onClick={logOutUser}>Logout</Nav.Link>
+              
             </Nav>
           ) : (
             <Nav>

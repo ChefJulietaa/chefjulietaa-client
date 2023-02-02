@@ -1,10 +1,11 @@
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../components/AuthContext";
 import service from "../api/service";
 
 function AddEditRecipe(props) {
+  const navigate = useNavigate();
 
   const { recipeId } = useParams(); 
 
@@ -35,7 +36,6 @@ function AddEditRecipe(props) {
       });
   };
 
-
   const { user } = useContext(AuthContext);
 
   const getRecipe = () => {
@@ -53,15 +53,12 @@ function AddEditRecipe(props) {
       .catch((error) => console.log(error));
   };
 
-  
-
   useEffect(() => {
     service.getAllIngredients(setAllIngredients);
     if (recipeId) {
       getRecipe();
     }
   }, [recipeId]);
-
 
 // Form submission
   const handleFormSubmit = (e) => {              
@@ -84,7 +81,7 @@ function AddEditRecipe(props) {
           setTotalTime("");
           setServings("");
           setIngredients([{ amount: '', ingredient: '' }]);
-          props.refreshRecipes();      
+          navigate('/');
         })
         .catch((error) => console.log(error));
     }
@@ -102,8 +99,7 @@ function AddEditRecipe(props) {
           setTotalTime("");
           setServings("");
           setIngredients([{ amount: '', ingredient: '' }]);
-        
-          props.refreshRecipes();      
+          navigate('/');
         })
         .catch((error) => console.log(error));
     }    
@@ -202,14 +198,14 @@ function AddEditRecipe(props) {
                     <option value={ingredient._id} key={ingredient._id}>{ingredient.title}</option>
                   ))}
                 </select>
-                <button type="button" onClick={() => removeIngredientById(ingredientIndex)}>Delete</button>
+                <button type="button" onClick={() => removeIngredientById(ingredientIndex)}>Delete an ingredient</button>
               </div>
             ))}
-          <button type="button" onClick={addIngredient}>Add ingredient</button>
+          <button type="button" onClick={addIngredient}>Add another ingredient</button>
         </div>
         { isUploadingImage 
       ? <button type="submit" disabled>Uploading...</button>
-      : <button type="submit" >Create</button>
+      : <button type="submit" >Create a recipe</button>
     }
       </form>
       </div>
@@ -218,5 +214,3 @@ function AddEditRecipe(props) {
 }
 
 export default AddEditRecipe;
-
-// selected={includedIngredient.ingredient._id === ingredient._id}

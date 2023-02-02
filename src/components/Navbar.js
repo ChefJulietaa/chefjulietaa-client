@@ -24,7 +24,7 @@ function NavScrollExample() {
             <Nav.Link href="/">Home</Nav.Link>
             {isLoggedIn ? (
               <>
-                <Nav.Link href={`/recipes/add`}>Create recipe</Nav.Link>
+                <Nav.Link href={`/recipes/add`}>Create a recipe</Nav.Link>
                 <Nav.Link onClick={logOutUser}>Logout</Nav.Link>
               </>
             ) : (
