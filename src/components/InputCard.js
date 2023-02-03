@@ -130,10 +130,11 @@ function InputCard({
           {isUploadingImage ? (
             <Button className="m-3" disabled>
               Uploading...
+              
             </Button>
           ) : (
-            <Button className="m-3" variant="primary">
-              {recipeId ? "Save" : "Create"} recipe
+            <Button className="m-3" variant="primary" type="submit">
+              Save recipe
             </Button>
           )}
           {recipeId && (
