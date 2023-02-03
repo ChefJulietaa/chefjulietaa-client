@@ -2,6 +2,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Container from "react-bootstrap/Container";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -39,42 +44,33 @@ function Signup(props) {
 
   
   return (
-    <div className="form" class="form-container">
-      <h1 className="heading">Sign Up</h1>
-
-      <form onSubmit={handleSignupSubmit} className= "form">
-      <div>
-        <label className="label">Email:</label>
-        <input className="input"
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleEmail}
-        /></div>
-        <div>
-        <label className="label">Password:</label>
-        <input className="input"
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        /></div>
-        <div>
-        <label className="label">Name:</label>
-        <input className="input"
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleName}
-        /></div>
-
-        <button className="button" type="submit">Sign Up</button>
-      </form>
-      { errorMessage && <p className="error-message">{errorMessage}</p> }
-
-      <p>Already have account?</p>
-      <Link to={"/login"}> Login</Link>
-    </div>
+    <Container className="pt-5">
+      <Row className="justify-content-md-center">
+        <Col sm lg="4">
+          <Form onSubmit={handleSignupSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>Email:</Form.Label>
+              <Form.Control type="email" placeholder="name@example.com" onChange={handleEmail}/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control type="password" onChange={handlePassword}/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Name:</Form.Label>
+              <Form.Control type="text" onChange={handleName}/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Button variant="primary" type="submit">Sign Up</Button>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <p>Already have account? <Link to={"/login"}> Login</Link></p>
+            </Form.Group>
+          </Form>
+        </Col>
+      </Row>
+      {/* { errorMessage && <p className="error-message">{errorMessage}</p> } */}
+    </Container>
   )
 }
 

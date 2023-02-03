@@ -2,6 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Container from "react-bootstrap/Container";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function AddIngredient() {
   const navigate = useNavigate();
@@ -20,16 +24,22 @@ function AddIngredient() {
   }
 
   return (
-    <Container>
-      <form onSubmit={addIngredient}>
-        <h1>Add ingredient</h1>
-        <label>Title:</label>
-        <input type="text"
-          placeholder="title"
-          name="title"
-          onChange={(e) => setIngredient({ title: e.target.value })}></input>
-          <button>Save</button>
-      </form>
+    <Container className="pt-5">
+      <Row className="justify-content-md-center">
+        <Col sm lg="4">
+          <h1 className="heading">Create a new ingredient</h1>
+          <Form onSubmit={addIngredient}>
+            <Form.Group className="mb-3">
+              <Form.Label>Title:</Form.Label>
+              <Form.Control type="text" placeholder="Ingredient name" onChange={(e) => setIngredient({ title: e.target.value })}/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Button variant="primary" type="submit">Save</Button>
+            </Form.Group>
+          </Form>
+        </Col>
+      </Row>
+      {/* { errorMessage && <p className="error-message">{errorMessage}</p> } */}
     </Container>
   );
 }

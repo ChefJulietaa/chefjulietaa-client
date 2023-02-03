@@ -2,6 +2,11 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/AuthContext";
+import Container from "react-bootstrap/Container";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -42,32 +47,31 @@ function Login(props) {
  
   
   return (
-    <div id="login-form" className="form-container">
-      <h1 className="heading">Login</h1>
+    <Container className="pt-5">
+      <Row className="justify-content-md-center">
+        <Col sm lg="4">
+          <Form onSubmit={handleLoginSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>Email:</Form.Label>
+              <Form.Control type="email" placeholder="name@example.com" onChange={handleEmail}/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control type="password" onChange={handlePassword}/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Button variant="primary" type="submit">Log in</Button>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <p>Don't have an account yet? <Link to={"/signup"}> Sign up</Link></p>
+            </Form.Group>
+          </Form>
+        </Col>
+      </Row>
+      {/* { errorMessage && <p className="error-message">{errorMessage}</p> } */}
+    </Container>
 
-      <form onSubmit={handleLoginSubmit} className= "form">
-      <div>
-        <label className="label"> Email:</label>
-        <input className="input"
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleEmail}/></div>
-        <div>
-        <label className="label"> Password:</label>
-        <input className="input"
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword} /></div>
-
-        <button className="button" type="submit">Login</button>
-      </form>
-      { errorMessage && <p className="error-message">{errorMessage}</p> }
-
-      <p className="text">Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
-    </div>
+ 
   )
 }
 

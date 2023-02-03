@@ -23,8 +23,9 @@ const getAllRecipes = (setRecipes) => {
 const getAllIngredients = (cb) => {
   axios
     .get(`${process.env.REACT_APP_API_URL}/api/ingredients`)
-    .then((response) => {
-      cb(response.data);
+    .then((response) => { 
+      const ingredients = response.data.sort((a, b) => a.title.localeCompare(b.title))
+      cb(ingredients);
     })
     .catch((error) => console.log(error));
 };
