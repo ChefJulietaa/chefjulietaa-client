@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Alert from 'react-bootstrap/Alert';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -62,13 +63,18 @@ function Login(props) {
             <Form.Group className="mb-3">
               <Button variant="primary" type="submit">Log in</Button>
             </Form.Group>
+
+            { errorMessage && (
+              <Alert variant="danger">{errorMessage}</Alert>
+            )}
+
             <Form.Group className="mb-3">
               <p>Don't have an account yet? <Link to={"/signup"}> Sign up</Link></p>
             </Form.Group>
           </Form>
         </Col>
       </Row>
-      {/* { errorMessage && <p className="error-message">{errorMessage}</p> } */}
+      
     </Container>
 
  

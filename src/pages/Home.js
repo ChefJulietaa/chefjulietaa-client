@@ -24,7 +24,7 @@ export default function Recipes() {
   }, []);
 
   return (
-    <Container>
+    <Container className="pt-5">
       <Row>
         {recipes.length !== 0 &&
           recipes.map((recipe) => (

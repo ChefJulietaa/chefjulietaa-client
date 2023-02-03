@@ -16,7 +16,7 @@ function KitchenSinkExample({
   preview=false
 }) {
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card style={{ width: "24rem" }}>
       <Card.Img style={{width:"100%", height:"200px", objectFit:"cover" }}variant="top" src={imageUrl} alt={title} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
